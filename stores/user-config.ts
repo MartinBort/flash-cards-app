@@ -10,7 +10,7 @@ export const userConfigStore = defineStore({
     }
   },
   actions: {
-    selectLanguage(value: string) {
+    selectLanguage(value: string | null) {
       this.config.lang = value;
     },
   },

@@ -2,8 +2,7 @@
 	<div>
 		<header>
 			<div>
-				<nuxt-link to="/user">settings</nuxt-link>
-				<span>language: {{ config.lang }}</span>
+				<nuxt-link :to="`/`">back</nuxt-link>
 			</div>
 		</header>
 		<slot />
