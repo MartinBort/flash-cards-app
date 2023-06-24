@@ -12,7 +12,7 @@
 		<div v-if="results">
 			<SearchResponseResultCard
 				v-for="(result, i) in results"
-				:key="result.text + i"
+				:key="JSON.stringify(result.text) + i"
 				:resultNumber="i + 1"
 				:queryString="query"
 				:res="result"
@@ -22,6 +22,7 @@
 </template>
 
 <script lang="ts" setup>
+import { LingueeResponse, LingueeItem } from '~/types/api/linguee-response';
 const props = defineProps({
 	lang: {
 		type: String,
@@ -33,7 +34,7 @@ const query = ref('');
 const suggestedTerm = ref('');
 const { lang } = toRefs(props);
 
-const results = ref(null);
+const results = ref<LingueeResponse | null>(null);
 
 const doSearch = () => {
 	if (query.value === '') return;
@@ -49,8 +50,9 @@ const doSearch = () => {
 			}
 		})
 		.then((data) => {
+			// filter out translations which are not "featured"
 			const featuredResponses = data.filter(
-				(response: any) => response.featured
+				(response: LingueeItem) => response.featured
 			);
 
 			results.value = featuredResponses;

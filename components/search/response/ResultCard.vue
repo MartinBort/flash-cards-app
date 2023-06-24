@@ -3,7 +3,10 @@
 		<span v-if="suggestedSearch !== ''">
 			Suggested search: "{{ suggestedSearch }}"
 		</span>
-		<h2>{{ resultNumber }}) {{ searchText }} - {{ type }}</h2>
+		<div class="title-button-group">
+			<h2>{{ resultNumber }}) {{ searchText }} - {{ type }}</h2>
+			<SearchResponseStarResultButton :result="res" />
+		</div>
 		<SearchResponseViewConjugations
 			v-if="type === 'verb'"
 			:infinitiveVerb="searchText"
@@ -28,6 +31,8 @@
 </template>
 
 <script lang="ts" setup>
+import { Translation } from '~/types/api/linguee-response';
+
 const props = defineProps({
 	res: {
 		type: Object,
@@ -42,8 +47,6 @@ const props = defineProps({
 		required: true,
 	},
 });
-
-import { Translation } from '~/types/api/linguee-response';
 
 const type = ref('');
 const suggestedSearch = ref('');
@@ -96,6 +99,10 @@ const translationsWithExamplesOnly = (
 ): Translation[] => {
 	return translations.filter((translation) => translation.examples.length > 0);
 };
+
+const addToList = () => {
+	console.log(props.res);
+};
 </script>
 
 <style scoped>
@@ -110,5 +117,10 @@ const translationsWithExamplesOnly = (
 }
 .result-container:last-of-type() {
 	margin-bottom: 0;
+}
+
+.title-button-group {
+	display: flex;
+	justify-content: space-between;
 }
 </style>

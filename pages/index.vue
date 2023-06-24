@@ -9,7 +9,7 @@
 
 			<div>lang is: {{ config.lang }}</div>
 		</div>
-		<SearchQueryInput lang="pt" v-else />
+		<SearchQueryInput :lang="config.lang" v-else />
 	</div>
 </template>
 

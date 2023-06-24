@@ -1,4 +1,4 @@
-export interface LingueeResponse extends Array<Item>{}
+export interface LingueeResponse extends Array<LingueeItem>{}
 
 export interface AudioLink {
   url: String;
@@ -19,7 +19,7 @@ export interface Translation {
   usage_frequency: String | null;
 }
 
-export interface Item {
+export interface LingueeItem {
   featured: boolean;
   text: String;
   pos: String;

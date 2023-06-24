@@ -17,7 +17,6 @@
 <script lang="ts" setup>
 import { userConfigStore } from '~/stores/user-config';
 import { storeToRefs } from 'pinia';
-// import UserConfig from '~/types/store/user-config';
 
 const props = defineProps({
 	infinitiveVerb: {
