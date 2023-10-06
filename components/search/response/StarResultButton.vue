@@ -25,7 +25,7 @@ const addToList = () => {
 
 	// TODO - create a list type object that contains data including lang
 	//      - list must be bound to a lang?
-	// IDEA - open side panel with lists?
+	// TODO - open side panel with lists?
 };
 
 const mapToSavedItem = (item: any): SavedItem => {

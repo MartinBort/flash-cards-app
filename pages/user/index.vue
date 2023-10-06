@@ -6,9 +6,12 @@
 		</div>
 		<div>
 			<h2>Lists</h2>
-			<div v-if="listsStore.getList.length > 0">
-				<div v-for="savedItem in listsStore.getList">
-					<h4>{{ savedItem.text }} - {{ savedItem.pos }}</h4>
+			<div v-if="listsStore.getList && listsStore.getList.length > 0">
+				<div v-for="(savedItem, index) in listsStore.getList">
+					<div class="title-button-group">
+						<h4>{{ savedItem.text }} - {{ savedItem.type }}</h4>
+						<button @click="removeItem(index)">remove</button>
+					</div>
 					{{ savedItem }}
 				</div>
 			</div>
@@ -33,4 +36,15 @@ const resetLang = () => {
 	selectLanguage(null);
 	navigateTo(`/`);
 };
+
+const removeItem = (index: number) => {
+	listsStore.removeFromList(index);
+};
 </script>
+
+<style scoped>
+.title-button-group {
+	display: flex;
+	justify-content: space-between;
+}
+</style>

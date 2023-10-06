@@ -9,8 +9,11 @@ export const savedListsStore = defineStore({
   },
   actions: {
     doSaveToList(value: any) {
-      this.list.push(value)
+      this.list.push(value);
     },
+    removeFromList(index: number) {
+      this.list.splice(index, 1);
+    }
   },
   getters: {
     getList: state => state.list,
